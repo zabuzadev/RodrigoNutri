@@ -1,0 +1,1881 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Rodrigo - Nutricionista Especialista</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #000;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            padding: 1rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #00ff88;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #00ff88;
+        }
+
+        /* Hero Section with Carousel */
+        .hero {
+            height: 100vh;
+            height: calc(var(--vh, 1vh) * 100);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .carousel {
+            display: flex;
+            width: 800%;
+            height: 100%;
+            animation: slide 24s infinite;
+        }
+
+        .carousel-slide {
+            width: 12.5%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* Placeholder backgrounds for carousel - back to more vibrant */
+        .carousel-slide:nth-child(1) { background: linear-gradient(45deg, rgba(0, 255, 136, 0.7), rgba(0, 204, 106, 0.7)); }
+        .carousel-slide:nth-child(2) { background: linear-gradient(45deg, rgba(255, 107, 107, 0.7), rgba(238, 90, 82, 0.7)); }
+        .carousel-slide:nth-child(3) { background: linear-gradient(45deg, rgba(78, 205, 196, 0.7), rgba(68, 160, 141, 0.7)); }
+        .carousel-slide:nth-child(4) { background: linear-gradient(45deg, rgba(69, 183, 209, 0.7), rgba(150, 201, 61, 0.7)); }
+        .carousel-slide:nth-child(5) { background: linear-gradient(45deg, rgba(240, 147, 251, 0.7), rgba(245, 87, 108, 0.7)); }
+        .carousel-slide:nth-child(6) { background: linear-gradient(45deg, rgba(255, 236, 210, 0.7), rgba(252, 182, 159, 0.7)); }
+        .carousel-slide:nth-child(7) { background: linear-gradient(45deg, rgba(168, 237, 234, 0.7), rgba(254, 214, 227, 0.7)); }
+        .carousel-slide:nth-child(8) { background: linear-gradient(45deg, rgba(255, 154, 158, 0.7), rgba(254, 207, 239, 0.7)); }
+
+        @keyframes slide {
+            0%, 12.5% { transform: translateX(0%); }
+            25% { transform: translateX(-12.5%); }
+            37.5% { transform: translateX(-25%); }
+            50% { transform: translateX(-37.5%); }
+            62.5% { transform: translateX(-50%); }
+            75% { transform: translateX(-62.5%); }
+            87.5% { transform: translateX(-75%); }
+            100% { transform: translateX(-87.5%); }
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: #fff;
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero .highlight {
+            color: #00ff88;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #00ff88, #00cc6a);
+            color: #000;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-transform: uppercase;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+        }
+
+        /* Stats Section */
+        .stats {
+            background: #111;
+            padding: 4rem 0;
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            padding: 0 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            color: #fff;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #00ff88;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        /* About Section - Improved Layout */
+        .about {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            padding: 6rem 0;
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .about-content h2 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 2rem;
+        }
+
+        .about-content p {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 1.8rem;
+            line-height: 1.6;
+        }
+
+        .about-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .photo-placeholder {
+            height: 250px;
+            background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: all 0.3s;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .photo-placeholder::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 49%, rgba(76, 175, 80, 0.1) 50%, transparent 51%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .photo-placeholder:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .photo-placeholder:hover::before {
+            opacity: 1;
+        }
+
+        /* Services Section - New Design */
+        .services {
+            background: #f8f9fa;
+            padding: 6rem 0;
+        }
+
+        .services-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .services h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .services-subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.2rem;
+            margin-bottom: 4rem;
+        }
+
+        .services-toggle {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+        }
+
+        .toggle-btn {
+            padding: 1rem 2rem;
+            border: none;
+            background: #fff;
+            color: #666;
+            font-size: 1.1rem;
+            cursor: pointer;
+            border-radius: 50px 0 0 50px;
+            transition: all 0.3s;
+            border: 2px solid #4CAF50;
+        }
+
+        .toggle-btn:last-child {
+            border-radius: 0 50px 50px 0;
+            border-left: none;
+        }
+
+        .toggle-btn.active {
+            background: #4CAF50;
+            color: #fff;
+        }
+
+        .service-plan {
+            background: #fff;
+            border-radius: 20px;
+            padding: 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .plan-header {
+            background: linear-gradient(135deg, #e8f5e8, #d4f1d4);
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 3px solid #4CAF50;
+        }
+
+        .plan-header h3 {
+            color: #333;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .plan-icon {
+            width: 40px;
+            height: 40px;
+            background: #4CAF50;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .plan-tag {
+            background: #4CAF50;
+            color: #fff;
+            padding: 0.3rem 1rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-top: 0.5rem;
+        }
+
+        .plan-content {
+            display: flex;
+            min-height: 500px;
+        }
+
+        .plan-features {
+            flex: 2;
+            padding: 2rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border-left: 4px solid #4CAF50;
+        }
+
+        .feature-number {
+            background: #4CAF50;
+            color: #fff;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+
+        .feature-content h4 {
+            color: #333;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-content p {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .feature-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .feature-tag {
+            background: #4CAF50;
+            color: #fff;
+            padding: 0.2rem 0.8rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+        }
+
+        .feature-tag.secondary {
+            background: #2196F3;
+        }
+
+        .feature-tag.tertiary {
+            background: #FF9800;
+        }
+
+        .plan-pricing {
+            flex: 1;
+            background: #fff;
+            padding: 2rem;
+            border-left: 1px solid #eee;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .pricing-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-header h3 {
+            color: #333;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .price-item {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            border-radius: 10px;
+            background: #f8f9fa;
+        }
+
+        .price-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #e74c3c;
+            margin-bottom: 0.5rem;
+        }
+
+        .price-description {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .promotional-price {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: #fff;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            position: relative;
+        }
+
+        .promotional-price::before {
+            content: "OFERTA ESPECIAL";
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #FF9800;
+            color: #fff;
+            padding: 0.3rem 1rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .promotional-price h4 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .promotional-price .big-price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .promotional-price .price-detail {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+
+        .promotional-price .savings {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
+        }
+
+        .plan-button {
+            background: #25d366;
+            color: #fff;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            margin-top: 1rem;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .plan-button:hover {
+            background: #20ba5a;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        .plan-note {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+
+        .plan-note h4 {
+            color: #856404;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .plan-note p {
+            color: #856404;
+            font-size: 0.8rem;
+            line-height: 1.4;
+        }
+
+        /* Video Section - Improved Layout */
+        .video-section {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            padding: 6rem 0;
+        }
+
+        .video-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 4rem;
+        }
+
+        .video-placeholder {
+            height: 350px;
+            background: #fff;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+            font-size: 1.2rem;
+            border: 3px dashed #4CAF50;
+            transition: all 0.3s;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .video-placeholder:hover {
+            background: #f8f9fa;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(76, 175, 80, 0.15);
+        }
+
+        .video-placeholder h3 {
+            color: #4CAF50;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .video-placeholder p {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.4;
+            max-width: 250px;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            background: linear-gradient(135deg, #f1f3f4 0%, #e8eaf6 100%);
+            padding: 6rem 0;
+        }
+
+        .gallery-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .gallery h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 3rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            height: 280px;
+            background: linear-gradient(45deg, #333, #555);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 35px rgba(0, 255, 136, 0.2);
+        }
+
+        /* Results Section */
+        .results {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            padding: 6rem 0;
+        }
+
+        .results-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .results h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 3rem;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .result-card {
+            background: #222;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            border-left: 4px solid #00ff88;
+        }
+
+        .result-card h3 {
+            color: #00ff88;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .result-card .result-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .result-card p {
+            color: #ccc;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, #f1f3f4 0%, #e8eaf6 100%);
+            padding: 6rem 0;
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 2rem;
+        }
+
+        .contact p {
+            color: #666;
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-item {
+            color: #333;
+        }
+
+        .contact-item strong {
+            color: #4CAF50;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* WhatsApp Floating Button */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: #fff;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            background-color: #20ba5a;
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(37, 211, 102, 0.5);
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+
+        /* CTA Buttons Enhancement */
+        .cta-whatsapp {
+            display: inline-block;
+            background: linear-gradient(45deg, #25d366, #20ba5a);
+            color: #fff;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-whatsapp:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+            background: linear-gradient(45deg, #20ba5a, #1ca851);
+        }
+
+        .cta-secondary {
+            display: inline-block;
+            background: transparent;
+            color: #4CAF50;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            border: 2px solid #4CAF50;
+            margin-left: 1rem;
+        }
+
+        .cta-secondary:hover {
+            background: #4CAF50;
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: #fff;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* Stats section CTA enhancement */
+        .stats-cta {
+            text-align: center;
+            margin-top: 3rem;
+        }
+        .footer {
+            background: #000;
+            color: #ccc;
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid #333;
+        }
+
+        /* Mobile-First Responsive Design */
+        @media (max-width: 1200px) {
+            .services-container {
+                max-width: 100%;
+                padding: 0 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* Header Mobile */
+            .nav {
+                padding: 0 1rem;
+            }
+            
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background: rgba(0, 0, 0, 0.95);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: right 0.3s ease;
+                z-index: 999;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links li {
+                margin: 1rem 0;
+            }
+
+            .nav-links a {
+                font-size: 1.2rem;
+            }
+
+            /* Hero Mobile */
+            .hero h1 {
+                font-size: 2.2rem;
+                line-height: 1.2;
+                margin-bottom: 1.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+                margin-bottom: 2rem;
+                padding: 0 1rem;
+            }
+
+            .hero-content {
+                padding: 0 1rem;
+            }
+
+            .cta-button, .cta-whatsapp {
+                font-size: 1rem;
+                padding: 0.8rem 1.5rem;
+                margin: 0.5rem;
+                display: block;
+                text-align: center;
+                width: calc(100% - 2rem);
+                max-width: 300px;
+                margin: 0.5rem auto;
+            }
+
+            .cta-secondary {
+                display: block;
+                margin: 1rem auto 0;
+                width: calc(100% - 2rem);
+                max-width: 300px;
+                text-align: center;
+            }
+
+            /* Stats Mobile */
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+                padding: 0 1rem;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+
+            /* About Mobile */
+            .about-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 0 1rem;
+            }
+
+            .about-content h2 {
+                font-size: 2rem;
+                text-align: center;
+            }
+
+            .photo-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .photo-placeholder {
+                height: 200px;
+            }
+
+            /* Video Mobile */
+            .video-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 0 1rem;
+            }
+
+            .video-placeholder {
+                height: 250px;
+            }
+
+            /* Services Mobile */
+            .services h2 {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+            }
+
+            .services-subtitle {
+                font-size: 1rem;
+                padding: 0 1rem;
+                margin-bottom: 2rem;
+            }
+
+            .services-toggle {
+                flex-direction: column;
+                gap: 0;
+                margin: 0 1rem 2rem;
+            }
+
+            .toggle-btn {
+                border-radius: 10px;
+                margin-bottom: 0.5rem;
+                font-size: 1rem;
+            }
+
+            .toggle-btn:last-child {
+                border-radius: 10px;
+                border-left: 2px solid #4CAF50;
+            }
+
+            .plan-content {
+                flex-direction: column;
+                min-height: auto;
+            }
+
+            .plan-header {
+                padding: 1.5rem 1rem;
+            }
+
+            .plan-header h3 {
+                font-size: 1.4rem;
+            }
+
+            .plan-features, .plan-pricing {
+                padding: 1.5rem 1rem;
+            }
+
+            .plan-pricing {
+                border-left: none;
+                border-top: 1px solid #eee;
+            }
+
+            .feature-item {
+                margin-bottom: 1rem;
+                padding: 1rem;
+            }
+
+            .feature-content h4 {
+                font-size: 1rem;
+            }
+
+            .feature-content p {
+                font-size: 0.9rem;
+            }
+
+            .price-value {
+                font-size: 1.8rem;
+            }
+
+            .promotional-price .big-price {
+                font-size: 2rem;
+            }
+
+            /* CTA Section Mobile */
+            .cta-section {
+                padding: 3rem 0;
+            }
+
+            .cta-section h2 {
+                font-size: 2rem;
+                padding: 0 1rem;
+            }
+
+            .cta-section p {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
+
+            /* Gallery Mobile */
+            .gallery h2 {
+                font-size: 2rem;
+            }
+
+            .gallery-container {
+                padding: 0 1rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .gallery-item {
+                height: 200px;
+            }
+
+            /* Results Mobile */
+            .results h2 {
+                font-size: 2rem;
+            }
+
+            .results-container {
+                padding: 0 1rem;
+            }
+
+            .results-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            /* Contact Mobile */
+            .contact h2 {
+                font-size: 2rem;
+            }
+
+            .contact-container {
+                padding: 0 1rem;
+            }
+
+            .contact-info {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                text-align: center;
+            }
+
+            /* WhatsApp Float Mobile */
+            .whatsapp-float {
+                width: 55px;
+                height: 55px;
+                right: 20px;
+                bottom: 20px;
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            /* Extra Small Mobile */
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero p {
+                font-size: 0.9rem;
+            }
+
+            .stats-container {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .photo-grid, .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .photo-placeholder, .gallery-item {
+                height: 160px;
+            }
+
+            .video-placeholder {
+                height: 220px;
+                padding: 1rem;
+            }
+
+            .video-placeholder h3 {
+                font-size: 1.1rem;
+            }
+
+            .video-placeholder p {
+                font-size: 0.9rem;
+            }
+
+            .services h2, .gallery h2, .results h2, .contact h2 {
+                font-size: 1.8rem;
+            }
+
+            .about-content h2 {
+                font-size: 1.8rem;
+            }
+
+            .cta-section h2 {
+                font-size: 1.8rem;
+            }
+
+            .plan-header h3 {
+                font-size: 1.2rem;
+            }
+
+            .feature-content h4 {
+                font-size: 0.95rem;
+            }
+
+            .price-value {
+                font-size: 1.6rem;
+            }
+
+            .promotional-price .big-price {
+                font-size: 1.8rem;
+            }
+
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                font-size: 24px;
+                right: 15px;
+                bottom: 15px;
+            }
+        }
+
+        /* Landscape Mobile */
+        @media (max-width: 768px) and (orientation: landscape) {
+            .hero {
+                height: 100vh;
+                padding: 2rem 0;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .stats-container {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 1rem;
+            }
+        }
+
+        /* Tablet Specific */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .about-container {
+                gap: 3rem;
+            }
+
+            .services-container {
+                padding: 0 2rem;
+            }
+
+            .video-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .video-placeholder {
+                max-width: 600px;
+                margin: 0 auto;
+            }
+        }
+
+        /* Mobile Menu Hamburger */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #fff;
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: flex;
+            }
+        }
+
+        /* Touch-friendly buttons */
+        @media (max-width: 768px) {
+            .cta-button, .cta-whatsapp, .cta-secondary, .plan-button {
+                min-height: 48px;
+                touch-action: manipulation;
+            }
+
+            .feature-item {
+                touch-action: manipulation;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">Dr. Rodrigo</div>
+            <ul class="nav-links">
+                <li><a href="#home">Início</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="#resultados">Resultados</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+            <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section with Carousel -->
+    <section id="home" class="hero">
+        <div class="carousel-container">
+            <div class="carousel">
+                <div class="carousel-slide"></div>
+                <div class="carousel-slide"></div>
+                <div class="carousel-slide"></div>
+                <div class="carousel-slide"></div>
+                <div class="carousel-slide"></div>
+                <div class="carousel-slide"></div>
+                <div class="carousel-slide"></div>
+                <div class="carousel-slide"></div>
+            </div>
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Transforme sua <span class="highlight">vida</span><br>através da nutrição</h1>
+            <p>Especialista em nutrição clínica e esportiva com mais de 8 anos de experiência. Resultados duradouros com acompanhamento individualizado.</p>
+            <a href="#contato" class="cta-button">Agende sua consulta</a>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stats-container">
+            <div class="stat-item">
+                <span class="stat-number">2000+</span>
+                <span class="stat-label">Pacientes</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">95%</span>
+                <span class="stat-label">Taxa de Sucesso</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">8+</span>
+                <span class="stat-label">Anos de Experiência</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">100%</span>
+                <span class="stat-label">Personalizado</span>
+            </div>
+        </div>
+        <div class="stats-cta">
+            <a href="https://wa.me/5511999999999?text=Vi os resultados incríveis! Quero começar minha transformação." class="cta-whatsapp" target="_blank">🚀 Quero Esses Resultados</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="sobre" class="about">
+        <div class="about-container">
+            <div class="about-content">
+                <h2>Sobre Dr. Rodrigo</h2>
+                <p>Formado pela Universidade de São Paulo (USP) com pós-graduação em Nutrição Esportiva e Clínica. Especialista em nutrição clínica e esportiva com mais de 8 anos de experiência transformando vidas através da alimentação.</p>
+                <p>Cada pessoa tem suas particularidades, metabolismo único e necessidades específicas. Por isso, desenvolvo protocolos totalmente personalizados com acompanhamento constante para garantir resultados duradouros.</p>
+                <div class="about-buttons">
+                    <a href="https://wa.me/5511999999999?text=Olá! Gostaria de saber mais sobre a consultoria nutricional." class="cta-whatsapp" target="_blank">💬 FALAR COM DR. RODRIGO</a>
+                    <a href="#servicos" class="cta-secondary">VER PLANOS</a>
+                </div>
+            </div>
+            <div class="photo-grid">
+                <div class="photo-placeholder">Foto 1</div>
+                <div class="photo-placeholder">Foto 2</div>
+                <div class="photo-placeholder">Foto 3</div>
+                <div class="photo-placeholder">Foto 4</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="video-section">
+        <div class="video-container">
+            <div class="video-placeholder">
+                <h3>Vídeo 1: Apresentação</h3>
+                <p>Conheça minha metodologia e abordagem personalizada</p>
+            </div>
+            <div class="video-placeholder">
+                <h3>Vídeo 2: Depoimentos</h3>
+                <p>Histórias reais de transformação dos meus pacientes</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicos" class="services">
+        <div class="services-container">
+            <h2>Modalidades de Acompanhamento</h2>
+            <p class="services-subtitle">Duas modalidades de acompanhamento real para você transformar sua vida com suporte profissional</p>
+            
+            <div class="services-toggle">
+                <button class="toggle-btn active" onclick="showOnline()">📱 Online</button>
+                <button class="toggle-btn" onclick="showPresencial()">👤 Presencial</button>
+            </div>
+
+            <!-- Online Plan -->
+            <div id="online-plan" class="service-plan">
+                <div class="plan-header">
+                    <h3><span class="plan-icon">📱</span> ACOMPANHAMENTO ONLINE</h3>
+                    <span class="plan-tag">Mais Popular</span>
+                </div>
+                <div class="plan-content">
+                    <div class="plan-features">
+                        <div class="feature-item">
+                            <div class="feature-number">01</div>
+                            <div class="feature-content">
+                                <h4>Plano Alimentar + Orientações Gerais</h4>
+                                <p>Explicando todo o protocolo que lhe foi passado</p>
+                                <div class="feature-tags">
+                                    <span class="feature-tag">Personalizado</span>
+                                    <span class="feature-tag secondary">Completo</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-number">02</div>
+                            <div class="feature-content">
+                                <h4>Ficha de Treino Individualizada</h4>
+                                <p>Completa e personalizada para seus objetivos</p>
+                                <div class="feature-tags">
+                                    <span class="feature-tag">Individual</span>
+                                    <span class="feature-tag tertiary">Eficaz</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-number">03</div>
+                            <div class="feature-content">
+                                <h4>Vídeos Explicativos</h4>
+                                <p>De exercícios / mobilidades / alongamentos</p>
+                                <div class="feature-tags">
+                                    <span class="feature-tag">Didático</span>
+                                    <span class="feature-tag secondary">Visual</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-number">04</div>
+                            <div class="feature-content">
+                                <h4>Suporte Diário</h4>
+                                <p>WhatsApp / e-mails para tirar dúvidas referente ao protocolo passado</p>
+                                <div class="feature-tags">
+                                    <span class="feature-tag">24/7</span>
+                                    <span class="feature-tag tertiary">Suporte</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-number">05</div>
+                            <div class="feature-content">
+                                <h4>Análise e Solicitação de Exames</h4>
+                                <p>Laboratoriais para acompanhamento completo</p>
+                                <div class="feature-tags">
+                                    <span class="feature-tag">Científico</span>
+                                    <span class="feature-tag secondary">Completo</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-number">06</div>
+                            <div class="feature-content">
+                                <h4>Acesso ao Grupo Fechado</h4>
+                                <p>Instagram com informações relevantes sobre dietas, treinos e tudo que envolve o meio fitness</p>
+                                <div class="feature-tags">
+                                    <span class="feature-tag">Comunidade</span>
+                                    <span class="feature-tag tertiary">Exclusivo</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="plan-pricing">
+                        <div class="pricing-header">
+                            <h3>Valores</h3>
+                        </div>
+                        <div class="price-item">
+                            <div class="price-value">R$ 350,00</div>
+                            <div class="price-description">Primeiro Mês (Validade 4 semanas)</div>
+                        </div>
+                        <div class="price-item">
+                            <div class="price-value">R$ 300,00</div>
+                            <div class="price-description">Segundo e Terceiro Mês (Validade 4 semanas)</div>
+                        </div>
+                        <div class="price-item">
+                            <div class="price-value">R$ 250,00</div>
+                            <div class="price-description">Quarto Mês em Diante (Validade 4 semanas)</div>
+                        </div>
+                        <div class="promotional-price">
+                            <h4>PLANO PROMOCIONAL TRIMESTRAL</h4>
+                            <div class="big-price">R$ 889,00</div>
+                            <div class="price-detail">(Validade 12 semanas)</div>
+                            <div class="savings">Economia de R$ 161,00</div>
+                        </div>
+                        <a href="https://wa.me/5511999999999?text=Quero contratar o acompanhamento ONLINE! Vamos começar?" target="_blank" class="plan-button">
+                            💬 Contratar Online
+                        </a>
+                        <div class="plan-note">
+                            <h4>OBSERVAÇÃO</h4>
+                            <p>No ACOMPANHAMENTO ONLINE tem a opção também de vídeo chamada (40min a 1h) o valor fica R$ 500,00 para a primeira vídeo chamada - a partir da segunda - fica R$ 400,00 cada vídeo chamada.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Presencial Plan -->
+            <div id="presencial-plan" class="service-plan" style="display: none;">
+                <div class="plan-header">
+                    <h3><span class="plan-icon">👤</span> ACOMPANHAMENTO PRESENCIAL</h3>
+                    <span class="plan-tag" style="background: #FF9800;">(Confirmar se tem vagas disponível)</span>
+                </div>
+                <div class="plan-content">
+                    <div class="plan-features">
+                        <div class="feature-item">
+                            <div class="feature-number">01</div>
+                            <div class="feature-content">
+                                <h4>Plano Alimentar + Orientações Gerais</h4>
+                                <p>Explicando todo o protocolo que lhe foi passado</p>
+                                <div class="feature-tags">
+                                    <span class="feature-tag">Personalizado</span>
+                                    <span class="feature-tag secondary">Completo</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-number">02</div>
+                            <div class="feature-content">
+                                <h4>Atendimento de 40min. à 1h00</h4>
+                                <p>Consulta presencial personalizada</p>
+                                <div class="feature-tags">
+                                    <span class="feature-tag">Presencial</span>
+                                    <span class="feature-tag tertiary">Dedicado</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-number">03</div>
+                            <div class="feature-content">
+                                <h4>Lembrete de Resumo Semanal</h4>
+                                <p>Enviado semanalmente diretamente no WhatsApp do paciente</p>
+                                <div class="feature-tags">
+                                    <span class="feature-tag">Semanal</span>
+                                    <span class="feature-tag secondary">Lembrete</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-number">04</div>
+                            <div class="feature-content">
+                                <h4>Avaliação Completa</h4>
+                                <p>Postural e funcional / Avaliação Antropométrica + Anamnese</p>
+                                <div class="feature-tags">
+                                    <span class="feature-tag">Completa</span>
+                                    <span class="feature-tag tertiary">Científica</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-number">05</div>
+                            <div class="feature-content">
+                                <h4>Ficha de Treino Individualizada</h4>
+                                <p>Completa e personalizada</p>
+                                <div class="feature-tags">
+                                    <span class="feature-tag">Individual</span>
+                                    <span class="feature-tag secondary">Única</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-number">06</div>
+                            <div class="feature-content">
+                                <h4>Vídeos Explicativos</h4>
+                                <p>De exercícios / mobilidades / alongamentos</p>
+                                <div class="feature-tags">
+                                    <span class="feature-tag">Didático</span>
+                                    <span class="feature-tag tertiary">Visual</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-number">07</div>
+                            <div class="feature-content">
+                                <h4>Suporte Diário</h4>
+                                <p>WhatsApp / e-mails para tirar dúvidas referente ao protocolo passado</p>
+                                <div class="feature-tags">
+                                    <span class="feature-tag">24/7</span>
+                                    <span class="feature-tag secondary">Suporte</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-number">08</div>
+                            <div class="feature-content">
+                                <h4>Suporte Especializado</h4>
+                                <p>Caso esteja fazendo uso de fármacos/Suplementos específicos</p>
+                                <div class="feature-tags">
+                                    <span class="feature-tag">Especializado</span>
+                                    <span class="feature-tag tertiary">Médico</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="plan-pricing">
+                        <div class="pricing-header">
+                            <h3>Valores</h3>
+                        </div>
+                        <div class="price-item">
+                            <div class="price-value">R$ 450,00</div>
+                            <div class="price-description">Primeiro Mês (Validade 4 semanas)</div>
+                        </div>
+                        <div class="price-item">
+                            <div class="price-value">R$ 350,00</div>
+                            <div class="price-description">Segundo Mês em Diante (Cada consulta + atualização de protocolo | Validade 4 semanas)</div>
+                        </div>
+                        <div class="promotional-price">
+                            <h4>PLANO PROMOCIONAL TRIMESTRAL</h4>
+                            <div class="big-price">R$ 979,00</div>
+                            <div class="price-detail">(Validade 12 semanas)</div>
+                            <div class="savings">Economia de R$ 171,00</div>
+                        </div>
+                        <a href="https://wa.me/5511999999999?text=Quero agendar uma consulta PRESENCIAL! Tem vagas disponíveis?" target="_blank" class="plan-button">
+                            📅 Agendar Presencial
+                        </a>
+                        <div class="plan-note">
+                            <h4>OBSERVAÇÃO</h4>
+                            <p>Vale ressaltar que os VALORES COBRADOS não se baseiam apenas nas CONSULTAS E MONTAGENS de protocolos, mas também no suporte e acompanhamento treino/dieta /dúvidas que são oferecidas diariamente ao aluno/paciente.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-container">
+            <h2>Pronto Para Transformar Sua Vida?</h2>
+            <p>Não perca mais tempo com dietas genéricas. Comece hoje seu acompanhamento personalizado!</p>
+            <a href="https://wa.me/5511999999999?text=Estou pronto para transformar minha vida! Vamos conversar?" class="cta-whatsapp" target="_blank" style="background: #fff; color: #4CAF50; margin-right: 1rem;">💪 Começar Agora</a>
+            <a href="https://wa.me/5511999999999?text=Gostaria de tirar algumas dúvidas antes de começar." class="cta-secondary" target="_blank" style="border-color: #fff; color: #fff;">❓ Tirar Dúvidas</a>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery">
+        <div class="gallery-container">
+            <h2>Galeria de Resultados</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">Foto 5</div>
+                <div class="gallery-item">Foto 6</div>
+                <div class="gallery-item">Foto 7</div>
+                <div class="gallery-item">Foto 8</div>
+                <div class="gallery-item">Foto 9</div>
+                <div class="gallery-item">Foto 10</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section id="resultados" class="results">
+        <div class="results-container">
+            <h2>Resultados Comprovados</h2>
+            <div class="results-grid">
+                <div class="result-card">
+                    <h3>Transformação Completa</h3>
+                    <div class="result-number">-15kg</div>
+                    <p>em 4 meses com diabetes controlada e energia renovada</p>
+                </div>
+                <div class="result-card">
+                    <h3>Mudança Sustentável</h3>
+                    <div class="result-number">-22kg</div>
+                    <p>sustentáveis com colesterol normalizado</p>
+                </div>
+                <div class="result-card">
+                    <h3>Performance Atlética</h3>
+                    <div class="result-number">+35%</div>
+                    <p>melhoria na performance esportiva</p>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="https://wa.me/5511999999999?text=Quero resultados como esses! Vamos começar?" class="cta-whatsapp" target="_blank">🎯 Quero Meus Resultados</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contato" class="contact">
+        <div class="contact-container">
+            <h2>Vamos Conversar Sobre Seus Objetivos?</h2>
+            <p>Clique no botão abaixo e vamos conversar sobre como posso ajudar você a alcançar seus objetivos de saúde e bem-estar.</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <strong>WhatsApp</strong>
+                    (11) 99999-9999
+                </div>
+                <div class="contact-item">
+                    <strong>Email</strong>
+                    contato@rodrigonutricao.com
+                </div>
+                <div class="contact-item">
+                    <strong>Localização</strong>
+                    São Paulo, SP
+                </div>
+            </div>
+
+            <a href="https://wa.me/5511999999999" class="cta-button" target="_blank">Falar no WhatsApp</a>
+        </div>
+    </section>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/5511999999999?text=Olá Dr. Rodrigo! Vim pelo site e gostaria de saber mais sobre a consultoria." target="_blank" class="whatsapp-float">
+        📱
+    </a>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Dr. Rodrigo - Nutricionista. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add animation on scroll for elements
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.service-card, .result-card, .gallery-item, .photo-placeholder').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            
+            navLinks.classList.toggle('active');
+            toggle.classList.toggle('active');
+        }
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                const navLinks = document.querySelector('.nav-links');
+                const toggle = document.querySelector('.mobile-menu-toggle');
+                navLinks.classList.remove('active');
+                toggle.classList.remove('active');
+            });
+        });
+
+        // Toggle between service plans
+        function showOnline() {
+            document.getElementById('online-plan').style.display = 'block';
+            document.getElementById('presencial-plan').style.display = 'none';
+            document.querySelectorAll('.toggle-btn')[0].classList.add('active');
+            document.querySelectorAll('.toggle-btn')[1].classList.remove('active');
+        }
+
+        function showPresencial() {
+            document.getElementById('online-plan').style.display = 'none';
+            document.getElementById('presencial-plan').style.display = 'block';
+            document.querySelectorAll('.toggle-btn')[0].classList.remove('active');
+            document.querySelectorAll('.toggle-btn')[1].classList.add('active');
+        }
+        function animateCounter(element, target, duration = 2000) {
+            let start = 0;
+            const increment = target / (duration / 16);
+            
+            function updateCounter() {
+                start += increment;
+                if (start < target) {
+                    element.textContent = Math.floor(start) + (element.textContent.includes('%') ? '%' : '+');
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    element.textContent = target + (element.textContent.includes('%') ? '%' : '+');
+                }
+            }
+            updateCounter();
+        }
+
+        // Animate stats when in view
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumbers = entry.target.querySelectorAll('.stat-number');
+                    statNumbers.forEach(stat => {
+                        const target = parseInt(stat.textContent);
+                        animateCounter(stat, target);
+                    });
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        });
+
+        statsObserver.observe(document.querySelector('.stats'));
+
+        // Mobile menu toggle (if needed)
+        const navLinks = document.querySelector('.nav-links');
+        
+        // Remove old burger implementation
+        const existingBurger = document.querySelector('.burger');
+        if (existingBurger) {
+            existingBurger.remove();
+        }
+
+        // Mobile viewport height fix for iOS
+        function setVH() {
+            let vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+        }
+
+        setVH();
+        window.addEventListener('resize', setVH);
+
+        // Optimize carousel for mobile
+        if (window.innerWidth <= 768) {
+            const carousel = document.querySelector('.carousel');
+            if (carousel) {
+                carousel.style.animationDuration = '16s'; // Faster on mobile
+            }
+        }
+    </script>
+</body>
+</html>
