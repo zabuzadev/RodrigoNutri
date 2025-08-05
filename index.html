@@ -62,167 +62,219 @@
         }
 
         /* Hero Section with Carousel */
-        .hero {
-            height: 100vh;
-            height: calc(var(--vh, 1vh) * 100);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+       .hero {
+    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-        .carousel-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            overflow: hidden;
-        }
+.carousel-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
 
-        .carousel {
-            display: flex;
-            width: 400%; /* 4 slides x 100% */
-            height: 100vh;
-            animation: slide 8s infinite;
-            transition: transform 0.5s ease-in-out;
-        }
+.carousel {
+    display: flex;
+    width: 400%; /* 4 slides x 100% */
+    height: 100vh;
+    animation: slide 8s infinite;
+    transition: transform 0.5s ease-in-out;
+}
 
-        .carousel-slide {
-            width: 100%;
-            height: 100vh;
-            position: relative;
-            overflow: hidden;
-        }
+/* CORREÇÃO PRINCIPAL - MUDANÇA AQUI */
+.carousel-slide {
+    width: 25%; /* MUDOU DE 100% PARA 25% */
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
 
-        .carousel-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-        }
+/* IMAGENS RESPONSIVAS - BASE */
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 50%;
+    display: block;
+}
 
-          /* Ajuste específico para a primeira imagem (homens) */
-        .carousel-slide:nth-child(1) img {
-            object-position: center 30%; /* Move o foco para cima, mostrando mais do torso */
-        }
+/* MOBILE (até 768px) */
+@media (max-width: 768px) {
+    .carousel-slide img {
+        object-position: center 45%;
+    }
 
-        /* Ajuste específico para a segunda imagem (mulheres) */
-        .carousel-slide:nth-child(2) img {
-            object-position: center 20%; /* Posiciona para mostrar melhor os rostos */
-        }
+    .carousel-slide:nth-child(1) img {
+        object-position: center 40%;
+    }
 
-        /* Para as outras imagens do carrossel */
-        .carousel-slide:nth-child(3) img {
-             object-position: center 20%;
+    .carousel-slide:nth-child(2) img {
+        object-position: center 35%;
+    }
 
-        }
+    .carousel-slide:nth-child(3) img {
+        object-position: center 30%;
+    }
 
-        .carousel-slide:nth-child(4) img {
-            object-position: center 20%;
-        }
+    .carousel-slide:nth-child(4) img {
+        object-position: center 45%;
+    }
+}
 
-        @keyframes slide {
-            0% { transform: translateX(0); }
-            22% { transform: translateX(0); }
-            25% { transform: translateX(-25%); }
-            47% { transform: translateX(-25%); }
-            50% { transform: translateX(-50%); }
-            72% { transform: translateX(-50%); }
-            75% { transform: translateX(-75%); }
-            97% { transform: translateX(-75%); }
-            100% { transform: translateX(0); }
-        }
+/* TELAS PEQUENAS (até 480px) */
+@media (max-width: 480px) {
+    .carousel-slide img {
+        object-position: center 50%;
+    }
+}
 
-        /* Placeholder backgrounds for carousel - back to more vibrant */
-        .carousel-slide:nth-child(1) { background: linear-gradient(45deg, rgba(0, 255, 136, 0.7), rgba(0, 204, 106, 0.7)); }
-        .carousel-slide:nth-child(2) { background: linear-gradient(45deg, rgba(255, 107, 107, 0.7), rgba(238, 90, 82, 0.7)); }
-        .carousel-slide:nth-child(3) { background: linear-gradient(45deg, rgba(78, 205, 196, 0.7), rgba(68, 160, 141, 0.7)); }
-        .carousel-slide:nth-child(4) { background: linear-gradient(45deg, rgba(69, 183, 209, 0.7), rgba(150, 201, 61, 0.7)); }
-        .carousel-slide:nth-child(5) { background: linear-gradient(45deg, rgba(240, 147, 251, 0.7), rgba(245, 87, 108, 0.7)); }
-        .carousel-slide:nth-child(6) { background: linear-gradient(45deg, rgba(255, 236, 210, 0.7), rgba(252, 182, 159, 0.7)); }
-        .carousel-slide:nth-child(7) { background: linear-gradient(45deg, rgba(168, 237, 234, 0.7), rgba(254, 214, 227, 0.7)); }
-        .carousel-slide:nth-child(8) { background: linear-gradient(45deg, rgba(255, 154, 158, 0.7), rgba(254, 207, 239, 0.7)); }
+/* DESKTOP (769px+) */
+@media (min-width: 769px) {
+    .carousel-slide:nth-child(1) img {
+        object-position: center 30%;
+    }
 
-        /* Adicionando controles de navegação */
-        .carousel-nav {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 10px;
-            z-index: 10;
-        }
+    .carousel-slide:nth-child(2) img {
+        object-position: center 20%;
+    }
 
-        .carousel-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
-            cursor: pointer;
-            transition: background 0.3s;
-        }
+    .carousel-slide:nth-child(3) img {
+        object-position: center 20%;
+    }
 
-        .carousel-dot.active {
-            background: #fff;
-        }
+    .carousel-slide:nth-child(4) img {
+        object-position: center 20%;
+    }
+}
 
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.4);
-            z-index: 1;
-        }
+@keyframes slide {
+    0% { transform: translateX(0); }
+    22% { transform: translateX(0); }
+    25% { transform: translateX(-25%); }
+    47% { transform: translateX(-25%); }
+    50% { transform: translateX(-50%); }
+    72% { transform: translateX(-50%); }
+    75% { transform: translateX(-75%); }
+    97% { transform: translateX(-75%); }
+    100% { transform: translateX(0); }
+}
 
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            color: #fff;
-            max-width: 800px;
-            padding: 0 2rem;
-        }
+/* Controles de navegação */
+.carousel-nav {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+}
 
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
+.carousel-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: background 0.3s;
+}
 
-        .hero .highlight {
-            color: #00ff88;
-        }
+.carousel-dot.active {
+    background: #fff;
+}
 
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
 
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(45deg, #00ff88, #00cc6a);
-            color: #000;
-            padding: 1rem 2rem;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            font-size: 1.1rem;
-            transition: transform 0.3s, box-shadow 0.3s;
-            text-transform: uppercase;
-        }
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: #fff;
+    max-width: 800px;
+    padding: 0 2rem;
+}
 
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
-        }
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
 
-        /* Stats Section */
+.hero .highlight {
+    color: #00ff88;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.cta-button {
+    display: inline-block;
+    background: linear-gradient(45deg, #00ff88, #00cc6a);
+    color: #000;
+    padding: 1rem 2rem;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-transform: uppercase;
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+}
+
+/* RESPONSIVO MOBILE */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+        padding: 0 1rem;
+    }
+
+    .hero-content {
+        padding: 0 1rem;
+    }
+
+    .cta-button {
+        font-size: 1rem;
+        padding: 0.8rem 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+
+    .hero p {
+        font-size: 0.9rem;
+    }
+
+     /* Stats Section */
         .stats {
             background: #111;
             padding: 4rem 0;
@@ -254,6 +306,7 @@
             font-size: 1rem;
             opacity: 0.8;
         }
+}
 
         /* About Section - Improved Layout */
         /* About Section - Improved Layout */
@@ -1432,6 +1485,53 @@
             .feature-item {
                 touch-action: manipulation;
             }
+            /* CORREÇÃO DEFINITIVA - CARROSSEL RESPONSIVO */
+@media (max-width: 768px) {
+    .hero {
+        height: 100vh !important;
+        height: calc(var(--vh, 1vh) * 100) !important;
+    }
+    
+    .carousel-container {
+        width: 100vw !important;
+        height: 100vh !important;
+        left: 0 !important;
+        top: 0 !important;
+    }
+    
+    .carousel {
+        width: 400vw !important;
+        height: 100vh !important;
+    }
+    
+    .carousel-slide {
+        width: 100vw !important;
+        height: 100vh !important;
+    }
+    
+    .carousel-slide img {
+        width: 100vw !important;
+        height: 100vh !important;
+        object-fit: cover !important;
+        object-position: center 50% !important;
+        max-width: none !important;
+        max-height: none !important;
+        min-width: 100vw !important;
+        min-height: 100vh !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel-slide img {
+        object-position: center 45% !important;
+    }
+}
+
+@media (max-width: 360px) {
+    .carousel-slide img {
+        object-position: center 50% !important;
+    }
+}
         }
     </style>
 </head>
@@ -1460,16 +1560,16 @@
         <div class="carousel-container">
             <div class="carousel" id="carousel">
                 <div class="carousel-slide">
-                    <img src="IMG_7353.JPG" alt="exemplo 1" loading="lazy">
+                    <img src="IMG_5752.PNG" alt="exemplo 1" loading="lazy">
                 </div>
                 <div class="carousel-slide">
-                    <img src="IMG_3718.PNG" alt="exemplo 2" loading="lazy">
+                    <img src="IMG_5753.PNG" alt="exemplo 2" loading="lazy">
                 </div>
                 <div class="carousel-slide">
-                    <img src="IMG_3722.PNG" alt="exemplo 3" loading="lazy">
+                    <img src="IMG_5759.PNG" alt="exemplo 3" loading="lazy">
                 </div>
                 <div class="carousel-slide">
-                    <img src="IMG_4065.PNG" alt="exemplo 4" loading="lazy">
+                    <img src="IMG_5748.PNG" alt="exemplo 4" loading="lazy">
                 </div>
             </div>
             <div class="carousel-nav">
@@ -1517,7 +1617,7 @@
         <div class="about-container">
             <div class="about-content">
                 <h2>Sobre Dr. Rodrigo</h2>
-                <p>Formado pela Universidade de São Paulo (USP) com pós-graduação em Nutrição Esportiva e Clínica. Especialista em nutrição clínica e esportiva com mais de 8 anos de experiência transformando vidas através da alimentação.</p>
+                <p>Especialista em nutrição clínica e esportiva, bacharel em Educação Física com mais de 10 anos de experiência transformando vidas através da alimentação.</p>
                 <p>Cada pessoa tem suas particularidades, metabolismo único e necessidades específicas. Por isso, desenvolvo protocolos totalmente personalizados com acompanhamento constante para garantir resultados duradouros.</p>
                 <div class="about-buttons">
                     <a href="https://wa.me/5511999999999?text=Olá! Gostaria de saber mais sobre a consultoria nutricional." class="cta-whatsapp" target="_blank">💬 FALAR COM DR. RODRIGO</a>
@@ -1536,12 +1636,11 @@
                     <img src="IMG_4065.PNG" alt="" loading="lazy">
                 </div>
                 <div class="photo-placeholder">
-                    <img src="IMG_3697.PNG" alt="" loading="lazy">
+                    <img src="IMG_7353.JPG" alt="" loading="lazy">
                 </div>
             </div>
         </div>
     </section>
-
 
     <!-- Services Section -->
     <section id="servicos" class="services">
@@ -1806,13 +1905,13 @@
             <h2>Galeria de Resultados</h2>
             <div class="gallery-grid">
                 <div class="gallery-item">
-                    <img src="IMG_3739.PNG" alt="">
+                    <img src="IMG_5769.JPG" alt="">
                 </div>
                 <div class="gallery-item">
                     <img src="IMG_3715.PNG" alt="">
                 </div>
                 <div class="gallery-item">
-                    <img src="IMG_1608.PNG" alt="">
+                    <img src="IMG_5768.JPG" alt="">
                 </div>
                 <div class="gallery-item">
                     <img src="IMG_7040.PNG" alt="">
@@ -1821,7 +1920,7 @@
                     <img src="IMG_8860.PNG" alt="">
                 </div>
                 <div class="gallery-item">
-                    <img src="IMG_3036.PNG" alt="">
+                    <img src="IMG_5765.JPG" alt="">
                 </div>
                 <div class="gallery-item">
                     <img src="IMG_3751.PNG" alt="">
@@ -1830,10 +1929,10 @@
                     <img src="IMG_3737.PNG" alt="">
                 </div>
                 <div class="gallery-item">
-                    <img src="IMG_3720.PNG" alt="">
+                    <img src="IMG_1608.PNG" alt="">
                 </div>
                 <div class="gallery-item">
-                    <img src="IMG_7353.JPG" alt=""> 
+                    <img src="IMG_5764.JPG" alt="">
                 </div>
             </div>
         </div>
@@ -2030,3 +2129,24 @@
     carousel.addEventListener('touchstart', e => {
         touchStartX = e.changedTouches[0].screenX;
     });
+    // Forçar dimensões do carrossel
+function fixCarousel() {
+    const slides = document.querySelectorAll('.carousel-slide');
+    const images = document.querySelectorAll('.carousel-slide img');
+    
+    slides.forEach(slide => {
+        slide.style.width = window.innerWidth + 'px';
+        slide.style.height = window.innerHeight + 'px';
+    });
+    
+    images.forEach(img => {
+        img.style.width = window.innerWidth + 'px';
+        img.style.height = window.innerHeight + 'px';
+        img.style.objectFit = 'cover';
+    });
+}
+
+// Executar quando carregar e redimensionar
+window.addEventListener('load', fixCarousel);
+window.addEventListener('resize', fixCarousel);
+window.addEventListener('orientationchange', fixCarousel);
