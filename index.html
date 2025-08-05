@@ -77,23 +77,62 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
+            height: 100vh;
             overflow: hidden;
         }
 
         .carousel {
             display: flex;
-            width: 800%;
-            height: 100%;
-            animation: slide 24s infinite;
+            width: 400%; /* 4 slides x 100% */
+            height: 100vh;
+            animation: slide 8s infinite;
+            transition: transform 0.5s ease-in-out;
         }
 
         .carousel-slide {
-            width: 12.5%;
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .carousel-slide img {
+            width: 100%;
             height: 100%;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+            object-fit: cover;
+            object-position: center;
+        }
+
+          /* Ajuste específico para a primeira imagem (homens) */
+        .carousel-slide:nth-child(1) img {
+            object-position: center 30%; /* Move o foco para cima, mostrando mais do torso */
+        }
+
+        /* Ajuste específico para a segunda imagem (mulheres) */
+        .carousel-slide:nth-child(2) img {
+            object-position: center 20%; /* Posiciona para mostrar melhor os rostos */
+        }
+
+        /* Para as outras imagens do carrossel */
+        .carousel-slide:nth-child(3) img {
+             object-position: center 20%;
+
+        }
+
+        .carousel-slide:nth-child(4) img {
+            object-position: center 20%;
+        }
+
+        @keyframes slide {
+            0% { transform: translateX(0); }
+            22% { transform: translateX(0); }
+            25% { transform: translateX(-25%); }
+            47% { transform: translateX(-25%); }
+            50% { transform: translateX(-50%); }
+            72% { transform: translateX(-50%); }
+            75% { transform: translateX(-75%); }
+            97% { transform: translateX(-75%); }
+            100% { transform: translateX(0); }
         }
 
         /* Placeholder backgrounds for carousel - back to more vibrant */
@@ -106,15 +145,28 @@
         .carousel-slide:nth-child(7) { background: linear-gradient(45deg, rgba(168, 237, 234, 0.7), rgba(254, 214, 227, 0.7)); }
         .carousel-slide:nth-child(8) { background: linear-gradient(45deg, rgba(255, 154, 158, 0.7), rgba(254, 207, 239, 0.7)); }
 
-        @keyframes slide {
-            0%, 12.5% { transform: translateX(0%); }
-            25% { transform: translateX(-12.5%); }
-            37.5% { transform: translateX(-25%); }
-            50% { transform: translateX(-37.5%); }
-            62.5% { transform: translateX(-50%); }
-            75% { transform: translateX(-62.5%); }
-            87.5% { transform: translateX(-75%); }
-            100% { transform: translateX(-87.5%); }
+        /* Adicionando controles de navegação */
+        .carousel-nav {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .carousel-dot.active {
+            background: #fff;
         }
 
         .hero-overlay {
@@ -204,83 +256,119 @@
         }
 
         /* About Section - Improved Layout */
-        .about {
-            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-            padding: 6rem 0;
-        }
+        /* About Section - Improved Layout */
+.about {
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    padding: 6rem 0;
+}
 
-        .about-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 5rem;
-            align-items: center;
-        }
+.about-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+}
 
-        .about-content h2 {
-            font-size: 2.5rem;
-            color: #333;
-            margin-bottom: 2rem;
-        }
+.about-content h2 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 2rem;
+}
 
-        .about-content p {
-            color: #666;
-            font-size: 1.1rem;
-            margin-bottom: 1.8rem;
-            line-height: 1.6;
-        }
+.about-content p {
+    color: #666;
+    font-size: 1.1rem;
+    margin-bottom: 1.8rem;
+    line-height: 1.6;
+}
 
-        .about-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
+.about-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
 
-        .photo-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-        }
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
 
-        .photo-placeholder {
-            height: 250px;
-            background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #666;
-            font-size: 1.1rem;
-            font-weight: 500;
-            transition: all 0.3s;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
+.photo-placeholder {
+    height: 200px; /* Aumentei de 250px para 300px */
+    background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: all 0.3s;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
 
-        .photo-placeholder::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, transparent 49%, rgba(76, 175, 80, 0.1) 50%, transparent 51%);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
+/* Estilo para as imagens dentro dos placeholders */
+.photo-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 40%; /* Ajusta para mostrar mais da parte superior */
+    border-radius: 20px;
+}
 
-        .photo-placeholder:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-        }
+/* Remove a classe fit-contain que não funcionou bem */
 
-        .photo-placeholder:hover::before {
-            opacity: 1;
-        }
+/* Para cards sem imagem, manter o texto centralizado */
+.photo-placeholder:not(:has(img)) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.photo-placeholder::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 49%, rgba(76, 175, 80, 0.1) 50%, transparent 51%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 1;
+}
+
+.photo-placeholder:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.photo-placeholder:hover::before {
+    opacity: 1;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .about-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    
+    .photo-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .photo-placeholder {
+        height: 250px;
+    }
+}
 
         /* Services Section - New Design */
         .services {
@@ -634,50 +722,85 @@
             max-width: 250px;
         }
 
-        /* Gallery Section */
-        .gallery {
-            background: linear-gradient(135deg, #f1f3f4 0%, #e8eaf6 100%);
-            padding: 6rem 0;
-        }
+       /* Gallery Section */
+.gallery {
+    background: linear-gradient(135deg, #f1f3f4 0%, #e8eaf6 100%);
+    padding: 6rem 0;
+}
 
-        .gallery-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
+.gallery-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
 
-        .gallery h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            color: #333;
-            margin-bottom: 3rem;
-        }
+.gallery h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 3rem;
+}
 
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-        }
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
 
-        .gallery-item {
-            height: 280px;
-            background: linear-gradient(45deg, #333, #555);
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-size: 1.1rem;
-            transition: transform 0.3s, box-shadow 0.3s;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
+.gallery-item {
+    height: 280px;
+    background: linear-gradient(45deg, #333, #555);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1.1rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    overflow: hidden; /* IMPORTANTE: Para cortar a imagem nas bordas do card */
+    position: relative;
+}
 
-        .gallery-item:hover {
-            transform: scale(1.05);
-            box-shadow: 0 15px 35px rgba(0, 255, 136, 0.2);
-        }
+/* Estilo para as imagens dentro dos gallery-items */
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 15px;
+    transition: transform 0.3s ease;
+}
 
+/* Para items sem imagem, manter o texto centralizado */
+.gallery-item:not(:has(img)) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gallery-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 35px rgba(0, 255, 136, 0.2);
+}
+
+/* Efeito de zoom na imagem ao passar o mouse */
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+    }
+    
+    .gallery-item {
+        height: 250px;
+    }
+}
         /* Results Section */
         .results {
             background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
@@ -1335,15 +1458,25 @@
     <!-- Hero Section with Carousel -->
     <section id="home" class="hero">
         <div class="carousel-container">
-            <div class="carousel">
-                <div class="carousel-slide"></div>
-                <div class="carousel-slide"></div>
-                <div class="carousel-slide"></div>
-                <div class="carousel-slide"></div>
-                <div class="carousel-slide"></div>
-                <div class="carousel-slide"></div>
-                <div class="carousel-slide"></div>
-                <div class="carousel-slide"></div>
+            <div class="carousel" id="carousel">
+                <div class="carousel-slide">
+                    <img src="IMG_7353.JPG" alt="exemplo 1" loading="lazy">
+                </div>
+                <div class="carousel-slide">
+                    <img src="IMG_3718.PNG" alt="exemplo 2" loading="lazy">
+                </div>
+                <div class="carousel-slide">
+                    <img src="IMG_3722.PNG" alt="exemplo 3" loading="lazy">
+                </div>
+                <div class="carousel-slide">
+                    <img src="IMG_4065.PNG" alt="exemplo 4" loading="lazy">
+                </div>
+            </div>
+            <div class="carousel-nav">
+                <div class="carousel-dot active"></div>
+                <div class="carousel-dot"></div>
+                <div class="carousel-dot"></div>
+                <div class="carousel-dot"></div>
             </div>
         </div>
         <div class="hero-overlay"></div>
@@ -1392,27 +1525,23 @@
                 </div>
             </div>
             <div class="photo-grid">
-                <div class="photo-placeholder">Foto 1</div>
-                <div class="photo-placeholder">Foto 2</div>
-                <div class="photo-placeholder">Foto 3</div>
-                <div class="photo-placeholder">Foto 4</div>
+                <div class="photo-placeholder">
+                    <img src="DSC01908.JPG" alt="Dr. Rodrigo" loading="lazy">
+
+                </div>
+                <div class="photo-placeholder">
+                     <img src="IMG_3721.PNG" alt="" loading="lazy">
+                </div>
+                <div class="photo-placeholder">
+                    <img src="IMG_4065.PNG" alt="" loading="lazy">
+                </div>
+                <div class="photo-placeholder">
+                    <img src="IMG_3697.PNG" alt="" loading="lazy">
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Video Section -->
-    <section class="video-section">
-        <div class="video-container">
-            <div class="video-placeholder">
-                <h3>Vídeo 1: Apresentação</h3>
-                <p>Conheça minha metodologia e abordagem personalizada</p>
-            </div>
-            <div class="video-placeholder">
-                <h3>Vídeo 2: Depoimentos</h3>
-                <p>Histórias reais de transformação dos meus pacientes</p>
-            </div>
-        </div>
-    </section>
 
     <!-- Services Section -->
     <section id="servicos" class="services">
@@ -1676,12 +1805,36 @@
         <div class="gallery-container">
             <h2>Galeria de Resultados</h2>
             <div class="gallery-grid">
-                <div class="gallery-item">Foto 5</div>
-                <div class="gallery-item">Foto 6</div>
-                <div class="gallery-item">Foto 7</div>
-                <div class="gallery-item">Foto 8</div>
-                <div class="gallery-item">Foto 9</div>
-                <div class="gallery-item">Foto 10</div>
+                <div class="gallery-item">
+                    <img src="IMG_3739.PNG" alt="">
+                </div>
+                <div class="gallery-item">
+                    <img src="IMG_3715.PNG" alt="">
+                </div>
+                <div class="gallery-item">
+                    <img src="IMG_1608.PNG" alt="">
+                </div>
+                <div class="gallery-item">
+                    <img src="IMG_7040.PNG" alt="">
+                </div>
+                <div class="gallery-item">
+                    <img src="IMG_8860.PNG" alt="">
+                </div>
+                <div class="gallery-item">
+                    <img src="IMG_3036.PNG" alt="">
+                </div>
+                <div class="gallery-item">
+                    <img src="IMG_3751.PNG" alt="">
+                </div>
+                <div class="gallery-item">
+                    <img src="IMG_3737.PNG" alt="">
+                </div>
+                <div class="gallery-item">
+                    <img src="IMG_3720.PNG" alt="">
+                </div>
+                <div class="gallery-item">
+                    <img src="IMG_7353.JPG" alt=""> 
+                </div>
             </div>
         </div>
     </section>
@@ -1819,63 +1972,61 @@
             document.querySelectorAll('.toggle-btn')[0].classList.remove('active');
             document.querySelectorAll('.toggle-btn')[1].classList.add('active');
         }
-        function animateCounter(element, target, duration = 2000) {
-            let start = 0;
-            const increment = target / (duration / 16);
-            
-            function updateCounter() {
-                start += increment;
-                if (start < target) {
-                    element.textContent = Math.floor(start) + (element.textContent.includes('%') ? '%' : '+');
-                    requestAnimationFrame(updateCounter);
-                } else {
-                    element.textContent = target + (element.textContent.includes('%') ? '%' : '+');
-                }
-            }
-            updateCounter();
-        }
 
-        // Animate stats when in view
-        const statsObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const statNumbers = entry.target.querySelectorAll('.stat-number');
-                    statNumbers.forEach(stat => {
-                        const target = parseInt(stat.textContent);
-                        animateCounter(stat, target);
-                    });
-                    statsObserver.unobserve(entry.target);
-                }
-            });
+        // Adicione este código ao seu <script> existente
+        document.addEventListener('DOMContentLoaded', function() {
+    const carousel = document.getElementById('carousel');
+    const dots = document.querySelectorAll('.carousel-dot');
+    let currentSlide = 0;
+    let isAnimating = false;
+
+    // Função para mudar slide
+    function goToSlide(index) {
+        if (isAnimating) return;
+        isAnimating = true;
+        
+        currentSlide = index;
+        const offset = -currentSlide * 25;
+        carousel.style.transform = `translateX(${offset}%)`;
+        
+        // Atualizar dots
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === currentSlide);
         });
 
-        statsObserver.observe(document.querySelector('.stats'));
+        setTimeout(() => {
+            isAnimating = false;
+        }, 500);
+    }
 
-        // Mobile menu toggle (if needed)
-        const navLinks = document.querySelector('.nav-links');
-        
-        // Remove old burger implementation
-        const existingBurger = document.querySelector('.burger');
-        if (existingBurger) {
-            existingBurger.remove();
-        }
+    // Adicionar click listeners aos dots
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => goToSlide(index));
+    });
 
-        // Mobile viewport height fix for iOS
-        function setVH() {
-            let vh = window.innerHeight * 0.01;
-            document.documentElement.style.setProperty('--vh', `${vh}px`);
-        }
+    // Auto-play com intervalo mais longo
+    let autoPlayInterval = setInterval(() => {
+        currentSlide = (currentSlide + 1) % 4;
+        goToSlide(currentSlide);
+    }, 4000);
 
-        setVH();
-        window.addEventListener('resize', setVH);
+    // Pausar auto-play quando o mouse estiver sobre o carrossel
+    carousel.addEventListener('mouseenter', () => {
+        clearInterval(autoPlayInterval);
+    });
 
-        // Optimize carousel for mobile
-        if (window.innerWidth <= 768) {
-            const carousel = document.querySelector('.carousel');
-            if (carousel) {
-                carousel.style.animationDuration = '16s'; // Faster on mobile
-            }
-        }
-    </script>
-</body>
-</html>
+    // Retomar auto-play quando o mouse sair
+    carousel.addEventListener('mouseleave', () => {
+        autoPlayInterval = setInterval(() => {
+            currentSlide = (currentSlide + 1) % 4;
+            goToSlide(currentSlide);
+        }, 4000);
+    });
+
+    // Otimização para dispositivos móveis
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    carousel.addEventListener('touchstart', e => {
+        touchStartX = e.changedTouches[0].screenX;
+    });
