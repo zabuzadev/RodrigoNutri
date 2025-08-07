@@ -880,6 +880,122 @@
         height: 250px;
     }
 }
+    /* About Section - Improved Layout */
+        /* About Section - Improved Layout */
+.about {
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    padding: 3rem 0; /* Reduzido de 6rem para 3rem */
+}
+
+.about-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+}
+
+.about-content h2 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 2rem;
+}
+
+.about-content p {
+    color: #666;
+    font-size: 1.1rem;
+    margin-bottom: 1.8rem;
+    line-height: 1.6;
+}
+
+.about-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.photo-placeholder {
+    height: 200px;
+    background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: all 0.3s;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Estilo para as imagens dentro dos placeholders */
+.photo-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 40%;
+    border-radius: 20px;
+}
+
+/* Para cards sem imagem, manter o texto centralizado */
+.photo-placeholder:not(:has(img)) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.photo-placeholder::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 49%, rgba(76, 175, 80, 0.1) 50%, transparent 51%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 1;
+}
+
+.photo-placeholder:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.photo-placeholder:hover::before {
+    opacity: 1;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .about {
+        padding: 2rem 0; /* Ainda menor no mobile */
+    }
+    
+    .about-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    
+    .photo-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .photo-placeholder {
+        height: 250px;
+    }
+}
         /* Results Section */
         .results {
             background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
@@ -1803,24 +1919,24 @@
     <section id="sobre" class="about">
         <div class="about-container">
             <div class="about-content">
-                <h2>Sobre Dr. Rodrigo</h2>
-                <p>Especialista em nutrição clínica e esportiva, bacharel em Educação Física com mais de 10 anos de experiência transformando vidas através da alimentação.</p>
-                <p>Cada pessoa tem suas particularidades, metabolismo único e necessidades específicas. Por isso, desenvolvo protocolos totalmente personalizados com acompanhamento constante para garantir resultados duradouros.</p>
+                <h2>Acompanhamento de verdade</h2>
+                <p>Resultados sólidos, satisfatórios e sustentáveis com acompanhamento individualizado.</p>
+                <p>Não adianta você pagar protocolos de emagrecimentos caros que prometem milagres se nao tiver acompanhamento de perto.</p>
 
             </div>
             <div class="photo-grid">
                 <div class="photo-placeholder">
-                    <img src="DSC01908.JPG" alt="Dr. Rodrigo" loading="lazy">
+                    <img src="IMG_4065.PNG" alt="Dr. Rodrigo" loading="lazy">
 
                 </div>
                 <div class="photo-placeholder">
-                     <img src="IMG_3721.PNG" alt="" loading="lazy">
+                     <img src="IMG_3712.PNG" alt="" loading="lazy">
                 </div>
                 <div class="photo-placeholder">
-                    <img src="IMG_4065.PNG" alt="" loading="lazy">
+                    <img src="IMG_3714.PNG" alt="" loading="lazy">
                 </div>
                 <div class="photo-placeholder">
-                    <img src="IMG_7353.JPG" alt="" loading="lazy">
+                    <img src="IMG_3722.PNG" alt="" loading="lazy">
                 </div>
             </div>
         </div>
@@ -2089,38 +2205,56 @@
             <h2>Galeria de Resultados</h2>
             <div class="gallery-grid">
                 <div class="gallery-item">
-                    <img src="IMG_5769.JPG" alt="">
+                    <img src="IMG_3721.PNG" alt="">
+                </div>
+                <div class="gallery-item">
+                    <img src="IMG_3739.PNG" alt="">
+                </div>
+                <div class="gallery-item">
+                    <img src="IMG_3708.PNG" alt="">
+                </div>
+                <div class="gallery-item">
+                    <img src="IMG_2628.JPG" alt="">
+                </div>
+                <div class="gallery-item">
+                    <img src="IMG_4746.JPG" alt="">
+                </div>
+                <div class="gallery-item">
+                    <img src="IMG_3718.PNG" alt="">
                 </div>
                 <div class="gallery-item">
                     <img src="IMG_3715.PNG" alt="">
                 </div>
                 <div class="gallery-item">
-                    <img src="IMG_5768.JPG" alt="">
+                    <img src="IMG_3705.PNG" alt="">
                 </div>
                 <div class="gallery-item">
-                    <img src="IMG_7040.PNG" alt="">
+                    <img src="IMG_3713.PNG" alt="">
                 </div>
                 <div class="gallery-item">
-                    <img src="IMG_8860.PNG" alt="">
-                </div>
-                <div class="gallery-item">
-                    <img src="IMG_5765.JPG" alt="">
-                </div>
-                <div class="gallery-item">
-                    <img src="IMG_3751.PNG" alt="">
-                </div>
-                <div class="gallery-item">
-                    <img src="IMG_3737.PNG" alt="">
-                </div>
-                <div class="gallery-item">
-                    <img src="IMG_1608.PNG" alt="">
-                </div>
-                <div class="gallery-item">
-                    <img src="IMG_5764.JPG" alt="">
+                    <img src="IMG_3735.JPG" alt="">
                 </div>
             </div>
         </div>
     </section>
+
+     </section><!-- About Section -->
+    <section id="sobre" class="about">
+        <div class="about-container">
+            <div class="about-content">
+                <h2>Sobre Dr. Rodrigo</h2>
+                <p>Especialista em nutrição clínica e esportiva, bacharel em Educação Física com mais de 10 anos de experiência transformando vidas através da alimentação.</p>
+                <p>Cada pessoa tem suas particularidades, metabolismo único e necessidades específicas. Por isso, desenvolvo protocolos totalmente personalizados com acompanhamento constante para garantir resultados duradouros.</p>
+
+            </div>
+            <div class="photo-grid">
+                <div class="photo-placeholder">
+                    <img src="DSC01908.JPG" alt="Dr. Rodrigo" loading="lazy">
+
+            </div>
+        </div>
+
+            </section>
 
     <!-- Results Section -->
     <section id="resultados" class="results">
