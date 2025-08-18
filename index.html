@@ -26,6 +26,7 @@
             background: rgba(0, 0, 0, 0.9);
             z-index: 1000;
             padding: 1rem 0;
+            -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
         }
 
@@ -108,50 +109,45 @@
 
 /* MOBILE (até 768px) */
 @media (max-width: 768px) {
+    /* Padrão para todas — levemente mais para baixo */
     .carousel-slide img {
-        object-position: center 45%;
+        object-position: center 60%;
     }
 
+    /* Ajustes individuais */
     .carousel-slide:nth-child(1) img {
-        object-position: center 40%;
+        object-position: center 70%; /* rosto estava mais alto */
     }
 
     .carousel-slide:nth-child(2) img {
-        object-position: center 35%;
+        object-position: center 65%; /* um pouco mais para baixo */
     }
 
     .carousel-slide:nth-child(3) img {
-        object-position: center 30%;
+        object-position: center 68%; /* ajustado para centralizar rosto */
     }
 
     .carousel-slide:nth-child(4) img {
-        object-position: center 45%;
-    }
-}
-
-/* TELAS PEQUENAS (até 480px) */
-@media (max-width: 480px) {
-    .carousel-slide img {
-        object-position: center 50%;
+        object-position: center 60%; /* leve ajuste */
     }
 }
 
 /* DESKTOP (769px+) */
 @media (min-width: 769px) {
     .carousel-slide:nth-child(1) img {
-        object-position: center 30%;
+        object-position: center 50%;
     }
 
     .carousel-slide:nth-child(2) img {
-        object-position: center 20%;
+        object-position: center 50%;
     }
 
     .carousel-slide:nth-child(3) img {
-        object-position: center 20%;
+        object-position: center 55%;
     }
 
     .carousel-slide:nth-child(4) img {
-        object-position: center 20%;
+        object-position: center 50%;
     }
 }
 
@@ -166,7 +162,6 @@
     97% { transform: translateX(-75%); }
     100% { transform: translateX(0); }
 }
-
 /* Controles de navegação */
 .carousel-nav {
     position: absolute;
@@ -191,6 +186,14 @@
     background: #fff;
 }
 
+/* Ajuste para as imagens não cortarem */
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%; /* Ajuste para mostrar melhor a parte superior */
+}
+
 .hero-overlay {
     position: absolute;
     top: 0;
@@ -208,6 +211,7 @@
     color: #fff;
     max-width: 800px;
     padding: 0 2rem;
+    margin-top: 10%; /* Pequeno espaçamento do topo para não sobrepor a cabeça */
 }
 
 .hero h1 {
@@ -257,11 +261,17 @@
 
     .hero-content {
         padding: 0 1rem;
+        margin-top: 15%; /* Mais espaço no mobile */
     }
 
     .cta-button {
         font-size: 1rem;
         padding: 0.8rem 1.5rem;
+    }
+
+    /* Ajuste específico para mobile */
+    .carousel-slide img {
+        object-position: center 15%; /* Melhor posicionamento no mobile */
     }
 }
 
@@ -274,38 +284,47 @@
         font-size: 0.9rem;
     }
 
-     /* Stats Section */
-        .stats {
-            background: #111;
-            padding: 4rem 0;
-        }
+    .hero-content {
+        margin-top: 20%; /* Ainda mais espaço em telas pequenas */
+    }
 
-        .stats-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            padding: 0 2rem;
-        }
+    /* Ajuste para telas muito pequenas */
+    .carousel-slide img {
+        object-position: center 10%; /* Foco na parte superior */
+    }
 
-        .stat-item {
-            text-align: center;
-            color: #fff;
-        }
+    /* Stats Section */
+    .stats {
+        background: #111;
+        padding: 4rem 0;
+    }
 
-        .stat-number {
-            font-size: 3rem;
-            font-weight: bold;
-            color: #00ff88;
-            display: block;
-            margin-bottom: 0.5rem;
-        }
+    .stats-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        padding: 0 2rem;
+    }
 
-        .stat-label {
-            font-size: 1rem;
-            opacity: 0.8;
-        }
+    .stat-item {
+        text-align: center;
+        color: #fff;
+    }
+
+    .stat-number {
+        font-size: 3rem;
+        font-weight: bold;
+        color: #00ff88;
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+        font-size: 1rem;
+        opacity: 0.8;
+    }
 }
 
         /* About Section - Improved Layout */
@@ -801,16 +820,15 @@
             max-width: 250px;
         }
 
-       /* Gallery Section */
-.gallery {
+  .gallery {
     background: linear-gradient(135deg, #f1f3f4 0%, #e8eaf6 100%);
     padding: 6rem 0;
 }
 
 .gallery-container {
-    max-width: 1200px;
+    max-width: 350px; /* Largura fixa estilo mobile */
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 1rem;
 }
 
 .gallery h2 {
@@ -821,65 +839,87 @@
 }
 
 .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
+    display: block; /* Simples layout em bloco para garantir vertical */
 }
 
 .gallery-item {
-    height: 280px;
-    background: linear-gradient(45deg, #333, #555);
+    width: 100%;
+    margin-bottom: 1.5rem; /* Espaçamento entre os cards */
+    background: #fff;
     border-radius: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    font-size: 1.1rem;
     transition: transform 0.3s, box-shadow 0.3s;
     cursor: pointer;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    overflow: hidden; /* IMPORTANTE: Para cortar a imagem nas bordas do card */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
     position: relative;
+    display: block; /* Força cada item a ocupar uma linha completa */
 }
 
-/* Estilo para as imagens dentro dos gallery-items */
-.gallery-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    border-radius: 15px;
-    transition: transform 0.3s ease;
-}
-
-/* Para items sem imagem, manter o texto centralizado */
+/* Para items sem imagem */
 .gallery-item:not(:has(img)) {
+    height: 280px;
+    background: linear-gradient(45deg, #333, #555);
+    color: #fff;
+    font-size: 1.1rem;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+/* Estilo para as imagens - UMA IMAGEM POR CARD */
+.gallery-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain; /* Mostra a imagem completa */
+    max-height: 600px; /* Altura máxima para não ficar muito alto */
+    margin: 0; /* Remove margens */
+    padding: 0; /* Remove padding */
 }
 
 .gallery-item:hover {
-    transform: scale(1.05);
-    box-shadow: 0 15px 35px rgba(0, 255, 136, 0.2);
+    transform: translateY(-5px); /* Movimento vertical em vez de zoom */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
 }
 
-/* Efeito de zoom na imagem ao passar o mouse */
-.gallery-item:hover img {
-    transform: scale(1.1);
+/* IMPORTANTE: Se você tem múltiplas imagens dentro de um card, force uma por linha */
+.gallery-item img + img {
+    display: none; /* Esconde imagens extras - mostra apenas a primeira */
+}
+
+/* Ou se preferir mostrar todas as imagens empilhadas verticalmente: */
+.gallery-item.multiple-images img {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.gallery-item.multiple-images img:last-child {
+    margin-bottom: 0;
 }
 
 /* Responsivo */
-@media (max-width: 768px) {
-    .gallery-grid {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 1rem;
+@media (max-width: 480px) {
+    .gallery-container {
+        max-width: 100%;
+        padding: 0 0.5rem;
     }
     
     .gallery-item {
-        height: 250px;
+        margin-bottom: 1rem;
+    }
+    
+    .gallery-item img {
+        max-height: 400px;
     }
 }
+
+@media (min-width: 768px) {
+    .gallery-container {
+        max-width: 400px;
+    }
+}
+
+
     /* About Section - Improved Layout */
         /* About Section - Improved Layout */
 .about {
@@ -1576,172 +1616,170 @@
 .cta-secondary:hover::before {
     left: 100%;
 }
+/* Gallery Mobile */
+.gallery h2 {
+    font-size: 2rem;
+}
 
-            /* Gallery Mobile */
-            .gallery h2 {
-                font-size: 2rem;
-            }
+.gallery-container {
+    padding: 0 1rem;
+}
 
-            .gallery-container {
-                padding: 0 1rem;
-            }
+.gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
 
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1rem;
-            }
+.gallery-item {
+    height: 300px; /* Aumentado para formato vertical */
+}
 
-            .gallery-item {
-                height: 200px;
-            }
+/* Results Mobile */
+.results h2 {
+    font-size: 2rem;
+}
 
-            /* Results Mobile */
-            .results h2 {
-                font-size: 2rem;
-            }
+.results-container {
+    padding: 0 1rem;
+}
 
-            .results-container {
-                padding: 0 1rem;
-            }
+.results-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
 
-            .results-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
+/* Contact Mobile */
+.contact h2 {
+    font-size: 2rem;
+}
 
-            /* Contact Mobile */
-            .contact h2 {
-                font-size: 2rem;
-            }
+.contact-container {
+    padding: 0 1rem;
+}
 
-            .contact-container {
-                padding: 0 1rem;
-            }
+.contact-info {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    text-align: center;
+}
 
-            .contact-info {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-                text-align: center;
-            }
+/* WhatsApp Float Mobile */
+.whatsapp-float {
+    width: 55px;
+    height: 55px;
+    right: 20px;
+    bottom: 20px;
+    font-size: 28px;
+}
 
-            /* WhatsApp Float Mobile */
-            .whatsapp-float {
-                width: 55px;
-                height: 55px;
-                right: 20px;
-                bottom: 20px;
-                font-size: 28px;
-            }
-        }
+@media (max-width: 480px) {
+    /* Extra Small Mobile */
+    .hero h1 {
+        font-size: 1.8rem;
+    }
 
-        @media (max-width: 480px) {
-            /* Extra Small Mobile */
-            .hero h1 {
-                font-size: 1.8rem;
-            }
+    .hero p {
+        font-size: 0.9rem;
+    }
 
-            .hero p {
-                font-size: 0.9rem;
-            }
+    .stats-container {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
 
-            .stats-container {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
+    .photo-grid, .gallery-grid {
+        grid-template-columns: 1fr;
+    }
 
-            .photo-grid, .gallery-grid {
-                grid-template-columns: 1fr;
-            }
+    .photo-placeholder, .gallery-item {
+        height: 250px; /* Aumentado para formato vertical */
+    }
 
-            .photo-placeholder, .gallery-item {
-                height: 160px;
-            }
+    .video-placeholder {
+        height: 220px;
+        padding: 1rem;
+    }
 
-            .video-placeholder {
-                height: 220px;
-                padding: 1rem;
-            }
+    .video-placeholder h3 {
+        font-size: 1.1rem;
+    }
 
-            .video-placeholder h3 {
-                font-size: 1.1rem;
-            }
+    .video-placeholder p {
+        font-size: 0.9rem;
+    }
 
-            .video-placeholder p {
-                font-size: 0.9rem;
-            }
+    .services h2, .gallery h2, .results h2, .contact h2 {
+        font-size: 1.8rem;
+    }
 
-            .services h2, .gallery h2, .results h2, .contact h2 {
-                font-size: 1.8rem;
-            }
+    .about-content h2 {
+        font-size: 1.8rem;
+    }
 
-            .about-content h2 {
-                font-size: 1.8rem;
-            }
+    .cta-section h2 {
+        font-size: 1.8rem;
+    }
 
-            .cta-section h2 {
-                font-size: 1.8rem;
-            }
+    .plan-header h3 {
+        font-size: 1.2rem;
+    }
 
-            .plan-header h3 {
-                font-size: 1.2rem;
-            }
+    .feature-content h4 {
+        font-size: 0.95rem;
+    }
 
-            .feature-content h4 {
-                font-size: 0.95rem;
-            }
+    .price-value {
+        font-size: 1.6rem;
+    }
 
-            .price-value {
-                font-size: 1.6rem;
-            }
+    .promotional-price .big-price {
+        font-size: 1.8rem;
+    }
 
-            .promotional-price .big-price {
-                font-size: 1.8rem;
-            }
-
-            .whatsapp-float {
-                width: 50px;
-                height: 50px;
-                font-size: 24px;
-                right: 15px;
-                bottom: 15px;
-            }
-        }
-
+    .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+        right: 15px;
+        bottom: 15px;
+    }
+}
         /* Landscape Mobile */
-        @media (max-width: 768px) and (orientation: landscape) {
-            .hero {
-                height: 100vh;
-                padding: 2rem 0;
+            @media (max-width: 768px) and (orientation: landscape) {
+                .hero {
+                    height: 100vh;
+                    padding: 2rem 0;
+                }
+    
+                .hero h1 {
+                    font-size: 2rem;
+                }
+    
+                .stats-container {
+                    grid-template-columns: repeat(4, 1fr);
+                    gap: 1rem;
+                }
             }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .stats-container {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 1rem;
-            }
-        }
-
-        /* Tablet Specific */
-        @media (min-width: 769px) and (max-width: 1024px) {
-            .about-container {
-                gap: 3rem;
-            }
-
-            .services-container {
-                padding: 0 2rem;
-            }
-
-            .video-container {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .video-placeholder {
-                max-width: 600px;
-                margin: 0 auto;
+    
+            /* Tablet Specific */
+            @media (min-width: 769px) and (max-width: 1024px) {
+                .about-container {
+                    gap: 3rem;
+                }
+    
+                .services-container {
+                    padding: 0 2rem;
+                }
+    
+                .video-container {
+                    grid-template-columns: 1fr;
+                    gap: 2rem;
+                }
+    
+                .video-placeholder {
+                    max-width: 600px;
+                    margin: 0 auto;
+                }
             }
         }
 
@@ -1824,6 +1862,46 @@
         min-width: 100vw !important;
         min-height: 100vh !important;
     }
+    @media (max-width: 768px) {
+    .carousel-slide img {
+        object-position: center 60% !important;
+    }
+
+    .carousel-slide:nth-child(1) img {
+        object-position: center 70% !important;
+    }
+
+    .carousel-slide:nth-child(2) img {
+        object-position: center 65% !important;
+    }
+
+    .carousel-slide:nth-child(3) img {
+        object-position: center 68% !important;
+    }
+
+    .carousel-slide:nth-child(4) img {
+        object-position: center 60% !important;
+    }
+}
+
+@media (min-width: 769px) {
+    .carousel-slide:nth-child(1) img {
+        object-position: center 50% !important;
+    }
+
+    .carousel-slide:nth-child(2) img {
+        object-position: center 50% !important;
+    }
+
+    .carousel-slide:nth-child(3) img {
+        object-position: center 55% !important;
+    }
+
+    .carousel-slide:nth-child(4) img {
+        object-position: center 50% !important;
+    }
+}
+
 }
 
 @media (max-width: 480px) {
@@ -1865,16 +1943,16 @@
         <div class="carousel-container">
             <div class="carousel" id="carousel">
                 <div class="carousel-slide">
-                    <img src="IMG_5752.PNG" alt="exemplo 1" loading="lazy">
+                    <img src="IMG_7622.PNG" alt="exemplo 1" loading="lazy">
                 </div>
                 <div class="carousel-slide">
                     <img src="IMG_5753.PNG" alt="exemplo 2" loading="lazy">
                 </div>
                 <div class="carousel-slide">
-                    <img src="IMG_5759.PNG" alt="exemplo 3" loading="lazy">
+                    <img src="IMG_7602.PNG" alt="exemplo 3" loading="lazy">
                 </div>
                 <div class="carousel-slide">
-                    <img src="IMG_5748.PNG" alt="exemplo 4" loading="lazy">
+                    <img src="IMG_7624.PNG" alt="exemplo 4" loading="lazy">
                 </div>
             </div>
             <div class="carousel-nav">
@@ -1913,7 +1991,7 @@
             </div>
         </div>
         <div class="stats-cta">
-            <a href="https://wa.me/5599996515378?text=Vi os resultados incríveis! Quero começar minha transformação." class="cta-whatsapp" target="_blank">🚀 Quero Esses Resultados</a>
+            <aa href="https://wa.me/5599996515378?text=Vi os resultados incríveis! Quero começar minha transformação." class="cta-whatsapp" target="_blank" rel="noopener">🚀 Quero Esses Resultados</a>
         </div>
     </section><!-- About Section -->
     <section id="sobre" class="about">
@@ -2050,7 +2128,7 @@
                             <div class="price-detail">(Validade 12 semanas)</div>
                             <div class="savings">Economia de R$ 161,00</div>
                         </div>
-                        <a href="https://wa.me/5599996515378?text=Quero contratar o acompanhamento ONLINE! Vamos começar?" target="_blank" class="plan-button">
+                        <a href="https://wa.me/5599996515378?text=Quero contratar o acompanhamento ONLINE! Vamos começar?" target="_blank" rel="noopener" class="plan-button">
                             💬 Contratar Online
                         </a>
                         <div class="plan-note">
@@ -2176,7 +2254,7 @@
                             <div class="price-detail">(Validade 12 semanas)</div>
                             <div class="savings">Economia de R$ 171,00</div>
                         </div>
-                        <a href="https://wa.me/5599996515378?text=Quero agendar uma consulta PRESENCIAL! Tem vagas disponíveis?" target="_blank" class="plan-button">
+                        <a href="https://wa.me/5599996515378?text=Quero agendar uma consulta PRESENCIAL! Tem vagas disponíveis?" target="_blank" rel="noopener" class="plan-button">
                             📅 Agendar Presencial
                         </a>
                         <div class="plan-note">
@@ -2194,8 +2272,8 @@
         <div class="cta-container">
             <h2>Pronto Para Transformar Sua Vida?</h2>
             <p>Não perca mais tempo com dietas genéricas. Comece hoje seu acompanhamento personalizado!</p>
-            <a href="https://wa.me/5599996515378?text=Estou pronto para transformar minha vida! Vamos conversar?" class="cta-whatsapp" target="_blank" style="background: #fff; color: #4CAF50; margin-right: 1rem;">💪 Começar Agora</a>
-            <a href="https://wa.me/5599996515378?text=Gostaria de tirar algumas dúvidas antes de começar." class="cta-secondary" target="_blank" style="border-color: #fff; color: #fff;">❓ Tirar Dúvidas</a>
+            <aa href="https://wa.me/5599996515378?text=Estou pronto para transformar minha vida! Vamos conversar?" class="cta-whatsapp cta-whatsapp-inverted" target="_blank" rel="noopener">💪 Começar Agora</a>
+            <a href="https://wa.me/5599996515378?text=Gostaria de tirar algumas dúvidas antes de começar." class="cta-secondary cta-secondary-inverted" target="_blank" rel="noopener">❓ Tirar Dúvidas</a>
         </div>
     </section>
 
@@ -2278,7 +2356,7 @@
                 </div>
             </div>
             <div style="text-align: center; margin-top: 3rem;">
-                <a href="https://wa.me/5599996515378?text=Quero resultados como esses! Vamos começar?" class="cta-whatsapp" target="_blank">🎯 Quero Meus Resultados</a>
+                <aa href="https://wa.me/5599996515378?text=Quero resultados como esses! Vamos começar?" class="cta-whatsapp" target="_blank" rel="noopener">🎯 Quero Meus Resultados</a>
             </div>
         </div>
     </section>
@@ -2304,12 +2382,12 @@
                 </div>
             </div>
 
-            <a href="https://wa.me/5599996515378" class="cta-button" target="_blank">Falar no WhatsApp</a>
+            <a href="https://wa.me/5599996515378" class="cta-button" target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a>
         </div>
     </section>
 
     <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/5599996515378?text=Olá Dr. Rodrigo! Vim pelo site e gostaria de saber mais sobre a consultoria." target="_blank" class="whatsapp-float">
+    <a href="https://wa.me/5599996515378?text=Olá Dr. Rodrigo! Vim pelo site e gostaria de saber mais sobre a consultoria." target="_blank" rel="noopener noreferrer" class="whatsapp-float">
         📱
     </a>
 
@@ -2586,3 +2664,4 @@ window.addEventListener('orientationchange', () => {
         fixCarousel();
     }
 });
+  
